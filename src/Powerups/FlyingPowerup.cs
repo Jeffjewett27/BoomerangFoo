@@ -145,6 +145,7 @@ namespace BoomerangFoo.Powerups
                 {
                     playerState.flyingTimeLimit = duration;
                     playerState.flyingTimer = duration;
+                    playerState.flyingForceFall = false;
                 }
                 playerState.isFlyingTimerOn = true;
                 playerState.isFlying = true;
@@ -158,10 +159,11 @@ namespace BoomerangFoo.Powerups
             var reviveClock = ((Image)(reviveTimeUIClock.GetValue(player)));
             var reviveUI = ((Canvas)(reviveTimeUI.GetValue(player)));
 
-            if (playerState.isFlying && !player.IsPositionOverHazard(player.transform.position))
+            if ((playerState.flyingForceFall || playerState.isFlying) && !player.IsPositionOverHazard(player.transform.position))
             {
                 playerState.isFlyingTimerOn = false;
                 playerState.isFlying = false;
+                playerState.flyingForceFall = false;
                 reviveUI.GetComponent<Animator>().SetBool("IsVisible", value: false);
             }
 
@@ -186,6 +188,7 @@ namespace BoomerangFoo.Powerups
                 reviveClock.fillAmount = 0f;
                 playerState.flyingTimer = playerState.flyingDuration;
                 playerState.isFlyingTimerOn = false;
+                playerState.flyingForceFall = false;
             }
         }
 

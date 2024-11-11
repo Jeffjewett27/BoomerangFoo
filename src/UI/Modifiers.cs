@@ -6,7 +6,6 @@ using TMPro;
 using UnityEngine;
 using System.Linq;
 using System.Reflection;
-using Newtonsoft.Json;
 using System.Text;
 using System.IO;
 
@@ -128,7 +127,33 @@ namespace BoomerangFoo.UI
                         kvp => kvp.Value.GetSelectedIndex()
                     );
                 string path = pdata.GetPath("customModifiers.json");
-                string json = JsonConvert.SerializeObject(settingIndices, Formatting.Indented);
+
+                if (!AppDomain.CurrentDomain.GetAssemblies().Any(a => a.GetName().Name == "Newtonsoft.Json"))
+                {
+                    BoomerangFoo.Logger.LogWarning("Save settings failed. Newtonsoft.Json.dll is missing.");
+                    return;
+                }
+
+                string json;
+                try
+                {
+                    // Dynamically load the Newtonsoft.Json assembly
+                    var assembly = Assembly.Load("Newtonsoft.Json");
+                    var jsonConvertType = assembly.GetType("Newtonsoft.Json.JsonConvert");
+
+                    var formattingType = assembly.GetType("Newtonsoft.Json.Formatting");
+                    var indentedValue = Enum.Parse(formattingType, "Indented");
+
+                    // Get the SerializeObject method
+                    var serializeMethod = jsonConvertType.GetMethod("SerializeObject", new[] { typeof(object), formattingType });
+
+                    // Invoke SerializeObject dynamically
+                    json = (string)serializeMethod.Invoke(null, new object[] { settingIndices, indentedValue });
+                } catch
+                {
+                    BoomerangFoo.Logger.LogWarning("Settings save failed. Could not serialize modifiers to JSON. Do you have 'Newtonsoft.Json.dll'?");
+                    return;
+                }
                 if (string.IsNullOrEmpty(json))
                 {
                     return;
@@ -138,9 +163,12 @@ namespace BoomerangFoo.UI
                 {
                     return;
                 }
-                else
+                try
                 {
                     File.WriteAllBytes(path, bytes);
+                } catch
+                {
+                    BoomerangFoo.Logger.LogWarning($"Settings save failed. Failed to write settings to {path}");
                 }
             }
         }
@@ -153,7 +181,6 @@ namespace BoomerangFoo.UI
 
             if (!pdata.FileExists(path))
             {
-                BoomerangFoo.Logger.LogInfo("customModifiers.json does not exist");
                 return;
             }
             string json;
@@ -164,12 +191,33 @@ namespace BoomerangFoo.UI
             }
             catch
             {
-                // oh well we tried
-                BoomerangFoo.Logger.LogInfo("failed to read all text");
+                BoomerangFoo.Logger.LogWarning($"Load settings failed. Failed to read text from {path}");
                 return;
             }
 
-            Dictionary<string, int> settings = JsonConvert.DeserializeObject<Dictionary<string, int>>(json);
+            if (!AppDomain.CurrentDomain.GetAssemblies().Any(a => a.GetName().Name == "Newtonsoft.Json"))
+            {
+                BoomerangFoo.Logger.LogWarning("Load settings failed. Newtonsoft.Json.dll is missing.");
+                return;
+            }
+
+            Dictionary<string, int> settings;
+            try
+            {
+                // Dynamically load the Newtonsoft.Json assembly
+                var assembly = Assembly.Load("Newtonsoft.Json");
+                var jsonConvertType = assembly.GetType("Newtonsoft.Json.JsonConvert");
+
+                // Get the DeserializeObject method
+                var deserializeMethod = jsonConvertType.GetMethod("DeserializeObject", new[] { typeof(string) });
+
+                // Invoke DeserializeObject dynamically
+                settings = (Dictionary<string, int>)deserializeMethod.Invoke(null, new object[] { json });
+            } catch
+            {
+                BoomerangFoo.Logger.LogWarning("Load settings failed. Could not deserialize JSON to modifiers. Do you have 'Newtonsoft.Json.dll'?");
+                return;
+            }
             if (settings != null)
             {
                 Modifiers.settings ??= [];
@@ -184,7 +232,7 @@ namespace BoomerangFoo.UI
             }
             else
             {
-                BoomerangFoo.Logger.LogInfo("failed to deserialize");
+                BoomerangFoo.Logger.LogWarning("Load settings failed. Failed to deserialize JSON. Check the formatting.");
             }
         }
     }

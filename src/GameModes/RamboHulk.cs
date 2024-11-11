@@ -55,9 +55,12 @@ namespace BoomerangFoo.GameModes
             PatchPlayer.OnPostGetReady -= OnGetReady;
             PatchPlayer.OnPreDie -= OnDie;
             PatchPlayer.OnPostDie -= AfterDie;
+            PatchGameManager.OnPreAddPlayerKill -= OnAddPlayerKill;
             PatchGameManager.OnPostPrepareRound -= ResolveRamboHulkRound;
             PatchGameManager.OnPreStartRoundSequence -= ResolveRamboHulkRound;
+            PatchGameManager.OnPostUpdate -= ResolveRamboHulkRound;
             PatchGameManager.PlayerRelationship = null;
+            RamboHulkKilledBy = -1;
         }
 
         public override void RegisterSettings()
