@@ -11,7 +11,7 @@ namespace BoomerangFoo.GameModes
         public float HoldTime = -1;
         public float DeathPenalty = 0;
 
-        public GoldenBoomerang() : base("GoldenBoomerang", "Golden Boomerang", "Hold onto the golden boomerang", SettingsManager.MatchType.GoldenDisc, false, 3)
+        public GoldenBoomerang() : base("GoldenBoomerang", "ui_goldenboomerang", "ui_helper_goldenboomerang", SettingsManager.MatchType.GoldenDisc, false, 3)
         {
         }
 

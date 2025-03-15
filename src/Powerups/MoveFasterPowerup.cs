@@ -55,6 +55,7 @@ namespace BoomerangFoo.Powerups
         protected MoveFasterPowerup()
         {
             Name = "Caffeinated";
+            LocalizationTerm = "powerup_movefaster";
             Bitmask = PowerupType.MoveFaster;
             AttackCooldown = DefaultAttackCooldown;
             DashForceMultiplier = DefaultDashForceMultiplier;
@@ -84,7 +85,7 @@ namespace BoomerangFoo.Powerups
             base.GenerateUI();
 
             // speedFactor
-            var speedFactor = Modifiers.CloneModifierSetting($"customPowerup.{Name}.speedFactor", "Speed Factor", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
+            var speedFactor = Modifiers.CloneModifierSetting($"customPowerup.{Name}.speedFactor", "ModifierCaffeineSpeed", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
             SettingIds.Add(speedFactor.id);
 
             float[] speedValues = [0.25f, 0.5f, 0.75f, 1f, 1.25f, 1.5f, 2f, 3f, 4f, 5f, 6f];
@@ -93,9 +94,9 @@ namespace BoomerangFoo.Powerups
             for (int i = 0; i < speedValues.Length; i++)
             {
                 speedOptions[i] = speedValues[i].ToString();
-                speedHints[i] = $"Multiply speed by {speedValues[i]}x";
+                speedHints[i] = $"ModifierCaffeineSpeedHint__{speedValues[i]}";
             }
-            speedHints[3] = "Normal caffeinated speed";
+            speedHints[3] = "ModifierCaffeineSpeedHintDefault";
             speedFactor.SetSliderOptions(speedOptions, 3, speedHints);
             speedFactor.SetGameStartCallback((gameMode, sliderIndex) => {
                 MoveFasterPowerup.Instance.MoveSpeedMultiplier = speedValues[sliderIndex];
@@ -103,7 +104,7 @@ namespace BoomerangFoo.Powerups
             });
 
             // attack speed
-            var attackSpeed = Modifiers.CloneModifierSetting($"customPowerup.{Name}.attackFactor", "Attack Speed", "ui_label_edgeprotection", $"customPowerup.{Name}.speedFactor");
+            var attackSpeed = Modifiers.CloneModifierSetting($"customPowerup.{Name}.attackFactor", "ModifierCaffeineAttackSpeed", "ui_label_edgeprotection", $"customPowerup.{Name}.speedFactor");
             SettingIds.Add(attackSpeed.id);
 
             float[] attackValues = [-100, -80, -50, -30, -20, -10, 0, 10, 20, 30, 50, 80, 100];
@@ -114,13 +115,13 @@ namespace BoomerangFoo.Powerups
                 attackOptions[i] = $"{attackValues[i]}%".ToString();
                 if (attackValues[i] < 0)
                 {
-                    attackHints[i] = $"Decrease melee speed by {-attackValues[i]}%";
+                    attackHints[i] = $"ModifierCaffeineAttackSpeedHintDecrease__{-attackValues[i]}";
                 } else
                 {
-                    attackHints[i] = $"Increase melee speed by {attackValues[i]}%";
+                    attackHints[i] = $"ModifierCaffeineAttackSpeedHintIncrease__{attackValues[i]}";
                 }
             }
-            attackHints[3] = "Normal caffeinated attack speed";
+            attackHints[6] = "ModifierCaffeineAttackSpeedHintNormal";
             attackSpeed.SetSliderOptions(attackOptions, 6, attackHints);
             attackSpeed.SetGameStartCallback((gameMode, sliderIndex) => {
                 float multiplier = (100 + attackValues[sliderIndex]) / 100f;

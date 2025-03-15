@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BoomerangFoo.Patches;
 using BoomerangFoo.UI;
+using I2.Loc;
 
 namespace BoomerangFoo.Powerups
 {
@@ -27,6 +28,7 @@ namespace BoomerangFoo.Powerups
         protected ShieldPowerup()
         {
             Name = "Shield";
+            LocalizationTerm = "powerup_shield";
             Bitmask = PowerupType.Shield;
             ShieldHits = DefaultShieldHits;
         }
@@ -51,17 +53,17 @@ namespace BoomerangFoo.Powerups
         {
             if (hasGeneratedUI) return;
             base.GenerateUI();
-            var shieldHits = Modifiers.CloneModifierSetting($"customPowerup.{Name}.shieldHits", "Durability", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
+            var shieldHits = Modifiers.CloneModifierSetting($"customPowerup.{Name}.shieldHits", "ModifierShieldDurability", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
             SettingIds.Add(shieldHits.id);
 
             string[] options = new string[31];
             string[] hints = new string[31];
-            options[0] = "Infinite";
-            hints[0] = "Shield never breaks. Uh oh!";
+            options[0] = "ModifierInfinite";
+            hints[0] = "ModifierShieldInfiniteHint";
             for (int i = 1; i < 31; i++)
             {
                 options[i] = i.ToString();
-                hints[i] = $"Lose shield after {i} hits";
+                hints[i] = $"ModifierShieldHint__{i}";
             }
             shieldHits.SetSliderOptions(options, 1, hints);
             shieldHits.SetGameStartCallback((gameMode, sliderIndex) => {

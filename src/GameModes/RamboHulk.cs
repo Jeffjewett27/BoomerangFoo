@@ -27,7 +27,7 @@ namespace BoomerangFoo.GameModes
         private FieldInfo controlledPFX = typeof(Player).GetField("controlledPFX", BindingFlags.NonPublic | BindingFlags.Instance);
         private FieldInfo retrievePFX = typeof(Player).GetField("retrievePFX", BindingFlags.NonPublic | BindingFlags.Instance);
 
-        public RamboHulk() : base("RamboHulk", "Juggernaut", "Dynamic 1 vs all", SettingsManager.MatchType.DeathMatch, false, 0) { }
+        public RamboHulk() : base("RamboHulk", "GameModeJuggernautName", "GameModeJuggernautHint", SettingsManager.MatchType.DeathMatch, false, 0) { }
 
         public override void Hook()
         {
@@ -69,8 +69,8 @@ namespace BoomerangFoo.GameModes
             var header = Modifiers.CloneModifierSetting(headerId, name, "ui_boomerangs", "ui_label_friendlyfire");
 
             string swapId = $"gameMode.{id}.swap";
-            var swap = Modifiers.CloneModifierSetting(swapId, "Swap On Death", "ui_label_warmuplevel", headerId);
-            swap.SetSliderOptions(["Off", "On"], 1, ["Round ends when juggernaut dies", "You take the juggernaut's place"]);
+            var swap = Modifiers.CloneModifierSetting(swapId, "GameModeJuggernautDeathSwap", "ui_label_warmuplevel", headerId);
+            swap.SetSliderOptions(["Off", "On"], 1, ["GameModeJuggernautDeathSwapHintOff", "GameModeJuggernautDeathSwapHintOn"]);
             swap.SetGameStartCallback((gameMode, sliderIndex) =>
             {
                 if (gameMode is RamboHulk rambo)
@@ -81,7 +81,7 @@ namespace BoomerangFoo.GameModes
 
             // powerup
             string hulkPowerId = $"gameMode.{id}.hulkPowerup";
-            var powerup = Modifiers.CloneModifierSetting(hulkPowerId, "Juggernaut Powerup", "powerupSelections", swapId);
+            var powerup = Modifiers.CloneModifierSetting(hulkPowerId, "GameModeJuggernautPowerupJuggernaut", "powerupSelections", swapId);
             powerup.PreparePowerupToggles(PowerupType.MoveFaster | PowerupType.DashThroughWalls | PowerupType.ExtraDisc);
             powerup.SetGameStartCallback((gameMode, powerups) =>
             {
@@ -92,8 +92,8 @@ namespace BoomerangFoo.GameModes
             });
 
             string reviveId = $"gameMode.{id}.revive";
-            var revive = Modifiers.CloneModifierSetting(reviveId, "Revive Teammates", "ui_label_warmuplevel", hulkPowerId);
-            revive.SetSliderOptions(["Off", "On"], 0, ["Cannot revive other peasants", "Revive your fellow peasants"]);
+            var revive = Modifiers.CloneModifierSetting(reviveId, "GameModeJuggernautRevive", "ui_label_warmuplevel", hulkPowerId);
+            revive.SetSliderOptions(["Off", "On"], 0, ["GameModeJuggernautReviveHintOff", "GameModeJuggernautReviveHintOn"]);
             revive.SetGameStartCallback((gameMode, sliderIndex) =>
             {
                 if (gameMode is RamboHulk rambo)
@@ -104,7 +104,7 @@ namespace BoomerangFoo.GameModes
 
             // other
             string otherPowerId = $"gameMode.{id}.otherPowerup";
-            var otherPowerup = Modifiers.CloneModifierSetting(otherPowerId, "Peasant Powerups", "powerupSelections", reviveId);
+            var otherPowerup = Modifiers.CloneModifierSetting(otherPowerId, "GameModeJuggernautPowerupPeasant", "powerupSelections", reviveId);
             otherPowerup.PreparePowerupToggles(PowerupType.None);
             otherPowerup.SetGameStartCallback((gameMode, powerups) =>
             {

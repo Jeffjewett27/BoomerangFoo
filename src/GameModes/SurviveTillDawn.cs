@@ -33,7 +33,7 @@ namespace BoomerangFoo.GameModes
 
         private static PowerupType originalAvailablePowerups = Powerup.AllPowerups();
 
-        public SurviveTillDawn() : base("SurviveTillDawn", "Survive 'Til Dawn", "Evade the attacking player", SettingsManager.MatchType.DeathMatch, false, 0) { }
+        public SurviveTillDawn() : base("SurviveTillDawn", "GameModeSurviveDawnName", "GameModeSurviveDawnHint", SettingsManager.MatchType.DeathMatch, false, 0) { }
 
         public override void Hook()
         {
@@ -70,8 +70,8 @@ namespace BoomerangFoo.GameModes
             var header = Modifiers.CloneModifierSetting(headerId, name, "ui_boomerangs", "ui_label_friendlyfire");
 
             string respawnId = $"gameMode.{id}.respawn";
-            var respawn = Modifiers.CloneModifierSetting(respawnId, "Rounds", "ui_label_warmuplevel", headerId);
-            respawn.SetSliderOptions(["Single", "Multiple"], 1, ["Continually respawn until victory", "Normal deathmatch rounds"]);
+            var respawn = Modifiers.CloneModifierSetting(respawnId, "GameModeSurviveDawnRounds", "ui_label_warmuplevel", headerId);
+            respawn.SetSliderOptions(["GameModeSurviveDawnRoundsSingle", "GameModeSurviveDawnRoundsMultiple"], 1, ["GameModeSurviveDawnRoundsHintSingle", "GameModeSurviveDawnRoundsHintMultiple"]);
             respawn.SetGameStartCallback((gameMode, sliderIndex) =>
             {
                 if (gameMode is SurviveTillDawn tilDawn)
@@ -82,7 +82,7 @@ namespace BoomerangFoo.GameModes
 
             // powerup
             string hulkPowerId = $"gameMode.{id}.hulkPowerup";
-            var powerup = Modifiers.CloneModifierSetting(hulkPowerId, "Mutant Powerup", "powerupSelections", respawnId);
+            var powerup = Modifiers.CloneModifierSetting(hulkPowerId, "GameModeSurviveDawnPowerupMutant", "powerupSelections", respawnId);
             powerup.PreparePowerupToggles(PowerupType.MoveFaster | PowerupType.DashThroughWalls | PowerupType.ExtraDisc);
             powerup.SetGameStartCallback((gameMode, powerups) =>
             {
@@ -93,9 +93,16 @@ namespace BoomerangFoo.GameModes
             });
 
             string timerId = $"gameMode.{id}.timer";
-            var timer = Modifiers.CloneModifierSetting(timerId, "Attack Timer", "ui_label_warmuplevel", hulkPowerId);
-            timer.SetSliderOptions(["1", "2", "3", "4", "5", "6", "8", "10", "12", "15", "18", "20", "25", "30"], 5, ["Cannot revive other peasants", "Revive your fellow peasants"]);
-            int[] timerOptions = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 18, 20, 25, 30];
+            var timer = Modifiers.CloneModifierSetting(timerId, "GameModeSurviveDawnTimer", "ui_label_warmuplevel", hulkPowerId);
+            int[] timerOptions = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 18, 20, 25, 30];
+            string[] timerValues = new string[timerOptions.Length];
+            string[] timerHints = new string[timerOptions.Length];
+            for (int i = 0; i < timerOptions.Length; i++)
+            {
+                timerValues[i] = timerOptions[i].ToString();
+                timerHints[i] = $"GameModeSurviveDawnTimerHint__{timerOptions[i]}";
+            }
+            timer.SetSliderOptions(timerValues, 5, timerHints);
             timer.SetGameStartCallback((gameMode, sliderIndex) =>
             {
                 if (gameMode is SurviveTillDawn tillDawn)
@@ -106,7 +113,7 @@ namespace BoomerangFoo.GameModes
 
             // other
             string otherPowerId = $"gameMode.{id}.otherPowerup";
-            var otherPowerup = Modifiers.CloneModifierSetting(otherPowerId, "Survivor Powerups", "powerupSelections", timerId);
+            var otherPowerup = Modifiers.CloneModifierSetting(otherPowerId, "GameModeSurviveDawnPowerupSurvivor", "powerupSelections", timerId);
             otherPowerup.PreparePowerupToggles(PowerupType.None);
             otherPowerup.SetGameStartCallback((gameMode, powerups) =>
             {

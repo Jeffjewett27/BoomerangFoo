@@ -1,0 +1,616 @@
+{
+  "MODDED_KEY": {
+    "description": "This is a modded text",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Modded Text!",
+      "Spanish": "Texto Modificado!",
+      "French": "Texte Modifi�!",
+      "German": "Modifizierter Text!"
+    }
+  },
+  "HELLO_WORLD": {
+    "description": "Greeting for modded game",
+    "translations": {
+      "English": "Hello, World!",
+      "Spanish": "Hola, Mundo!",
+      "French": "Bonjour, le monde!",
+      "German": "Hallo, Welt!"
+    }
+  },
+  "GameModePowerDrainName": {
+    "description": "Name of Power Drain displayed on gamemode select.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Power Drain"
+    }
+  },
+  "GameModePowerDrainLost": {
+    "description": "Power Drain setting for losing powerups on death.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Powerups Lost"
+    }
+  },
+  "GameModePowerDrainLostAll": {
+    "description": "Power Drain setting for losing all powerups on death.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "All"
+    }
+  },
+  "GameModePowerDrainLostHint": {
+    "description": "Power Drain hint for losing powerups on death.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Lose %s% powerups on death"
+    }
+  },
+  "GameModePowerDrainLostHintAll": {
+    "description": "Power Drain hint for losing all powerups on death.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Clears all powerups on death"
+    }
+  },
+  "GameModePowerDrainPity": {
+    "description": "Power Drain setting for giving a shield to losing players.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Pity Shield"
+    }
+  },
+  "GameModePowerDrainPityHintOff": {
+    "description": "Power Drain hint for shield turned off.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "No shield"
+    }
+  },
+  "GameModePowerDrainPityHintOn": {
+    "description": "Power Drain hint for shield turned on.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Give a shield to powerupless players"
+    }
+  },
+  "GameModePowerDrainHint": {
+    "description": "Hint for Power Drain displayed on gamemode select.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Kill to steal powers"
+    }
+  },
+  "GameModeJuggernautName": {
+    "description": "Name of Juggernaut displayed on gamemode select.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Juggernaut"
+    }
+  },
+  "GameModeJuggernautHint": {
+    "description": "Hint for Juggernaut displayed on gamemode select.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Dynamic 1 vs all"
+    }
+  },
+  "GameModeJuggernautDeathSwap": {
+    "description": "Juggernaut powerup setting for swapping who is juggernaut on death.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Swap On Death"
+    }
+  },
+  "GameModeJuggernautDeathSwapHintOff": {
+    "description": "Juggernaut powerup setting for swapping turned off.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Round ends when juggernaut dies"
+    }
+  },
+  "GameModeJuggernautDeathSwapHintOn": {
+    "description": "Juggernaut powerup setting for swapping turned on.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "You take the juggernaut's place"
+    }
+  },
+  "GameModeJuggernautPowerupJuggernaut": {
+    "description": "Juggernaut powerup setting for what powerups juggernaut has.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Juggernaut Powerups"
+    }
+  },
+  "GameModeJuggernautPowerupPeasant": {
+    "description": "Juggernaut powerup setting for what powerups the peasants have.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Peasant Powerups"
+    }
+  },
+  "GameModeJuggernautRevive": {
+    "description": "Juggernaut powerup setting whether can revive other peasants.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Revive Teammates"
+    }
+  },
+  "GameModeJuggernautReviveHintOff": {
+    "description": "Juggernaut powerup setting turned off revive.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Cannot revive other peasants"
+    }
+  },
+  "GameModeJuggernautReviveHintOn": {
+    "description": "Juggernaut powerup setting turned on revive.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Revive your fellow peasants"
+    }
+  },
+  "GameModeSurviveDawnName": {
+    "description": "Name of Survive 'Til Dawn displayed on gamemode select.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Survive 'Til Dawn"
+    }
+  },
+  "GameModeSurviveDawnHint": {
+    "description": "Hint for Survive 'Til Dawn displayed on gamemode select.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Evade the attacking player"
+    }
+  },
+  "GameModeSurviveDawnRounds": {
+    "description": "Survive 'Til Dawn setting for how the rounds play out.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Rounds"
+    }
+  },
+  "GameModeSurviveDawnRoundsSingle": {
+    "description": "Survive 'Til Dawn setting for a single round.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Single"
+    }
+  },
+  "GameModeSurviveDawnRoundsMultiple": {
+    "description": "Survive 'Til Dawn setting for multiple rounds.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Multiple"
+    }
+  },
+  "GameModeSurviveDawnRoundsHintSingle": {
+    "description": "Survive 'Til Dawn hint for a single round.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Continually respawn until victory"
+    }
+  },
+  "GameModeSurviveDawnRoundsHintMultiple": {
+    "description": "Survive 'Til Dawn hint for multiple rounds.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Normal deathmatch rounds"
+    }
+  },
+  "GameModeSurviveDawnPowerupMutant": {
+    "description": "Survive 'Til Dawn setting for what powerups the mutant has.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Mutant Powerups"
+    }
+  },
+  "GameModeSurviveDawnPowerupSurvivor": {
+    "description": "Survive 'Til Dawn setting for what powerups the survivors have.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Survivor Powerups"
+    }
+  },
+  "GameModeSurviveDawnTimer": {
+    "description": "Survive 'Til Dawn setting for how long before switching the mutant.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Attack Timer"
+    }
+  },
+  "GameModeSurviveDawnTimerHint": {
+    "description": "Survive 'Til Dawn hint for how long before switching the mutant.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Mutant switches after %s% seconds."
+    }
+  },
+  "GameModeTeamGoldenName": {
+    "description": "Name of Team Golden displayed on gamemode select.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Team Golden"
+    }
+  },
+  "GameModeTeamGoldenHint": {
+    "description": "Hint for Team Golden displayed on gamemode select.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Golden boomerang with teams"
+    }
+  },
+  "PowerupHoverName": {
+    "description": "Name of custom hover powerup that lets you walk over water.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Hover"
+    }
+  },
+  "ModifierShieldDurability": {
+    "description": "Durability setting for shield.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Durability"
+    }
+  },
+  "ModifierInfinite": {
+    "description": "Infinite/unlimited setting.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Infinite"
+    }
+  },
+  "ModifierShieldInfiniteHint": {
+    "description": "Hint for infinite shield setting.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Shield never breaks. Uh oh!"
+    }
+  },
+  "ModifierShieldHint": {
+    "description": "Hint for shield setting.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Lose shield after %s% hits"
+    }
+  },
+  "ModifierBamboozleDuration": {
+    "description": "Bammboozle duration setting.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Duration"
+    }
+  },
+  "ModifierBamboozleDurationHint": {
+    "description": "Bammboozle duration hint.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Bamboozled for %s% seconds"
+    }
+  },
+  "ModifierBamboozleDurationHintInfinite": {
+    "description": "Bammboozle duration infinite hint.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Lasts until end of round"
+    }
+  },
+  "ModifierExplosionRadiusHint": {
+    "description": "Explosion radius hint.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Multiply explosion radius by %s%x"
+    }
+  },
+  "ModifierExplosionRadiusNormalHint": {
+    "description": "Explosion radius hint for normal size.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Normal explosion radius"
+    }
+  },
+  "ModifierExplosionRadiusNuke": {
+    "description": "Explosion radius setting for nuke size.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "NUKE"
+    }
+  },
+  "ModifierExplosionRadiusNukeHint": {
+    "description": "Explosion radius hint for nuke size.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "nuke."
+    }
+  },
+  "ModifierExplosionIceRadius": {
+    "description": "Explosion radius for ice.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Ice Factor"
+    }
+  },
+  "ModifierExplosionIceRadiusHint": {
+    "description": "Explosion radius hint for ice.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Ice boomerangs explosion radius multiplied by additional %s%x"
+    }
+  },
+  "ModifierExplosionIceRadiusDefaultHint": {
+    "description": "Explosion radius hint for ice default size.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Ice boomerangs explosion radius is default"
+    }
+  },
+  "ModifierExplosionIceAgeRadius": {
+    "description": "Explosion radius setting for ice with ice age size.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Ice Age"
+    }
+  },
+  "ModifierExplosionIceAgeRadiusHint": {
+    "description": "Explosion radius hint for ice with ice age size.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Global freezing"
+    }
+  },
+  "ModifierExplosionMultiRadius": {
+    "description": "Explosion radius setting for multi boomerang.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Multi-Boomerang Factor"
+    }
+  },
+  "ModifierExplosionMultiRadiusHint": {
+    "description": "Explosion radius hint for multi boomerang.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Multi-Boomerangs explosion radius multiplied by additional %s%x"
+    }
+  },
+  "ModifierExplosionMultiRadiusHintDefault": {
+    "description": "Explosion radius hint for multi boomerang default size.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Multi-Boomerangs explosion radius is default"
+    }
+  },
+  "ModifierDecoyMax": {
+    "description": "Decoy setting for max decoys.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Maximum Decoys"
+    }
+  },
+  "ModifierDecoyMaxHint": {
+    "description": "Decoy hint for maximum decoys",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Can spawn up to %s% decoys."
+    }
+  },
+  "ModifierDecoyMaxWarning": {
+    "description": "Decoy hint for infinite decoys, warning about the consequences.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "I am not responsible for what happens..."
+    }
+  },
+  "ModifierDecoyRevive": {
+    "description": "Decoy setting for reviving.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Revive As Decoy"
+    }
+  },
+  "ModifierDecoyReviveOffHint": {
+    "description": "Decoy hint for reviving turned off.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "You die as normal"
+    }
+  },
+  "ModifierDecoyReviveOnHint": {
+    "description": "Decoy hint for reviving turned on.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "You can take the place of your decoy"
+    }
+  },
+  "ModifierFireSurvival": {
+    "description": "Fire powerup setting for how long you survive on fire.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Burning Survival"
+    }
+  },
+  "ModifierFireSurvivalInstant": {
+    "description": "Fire powerup setting for burning instantly.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Instant"
+    }
+  },
+  "ModifierFireSurvivalShort": {
+    "description": "Fire powerup setting for burning quickly.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Short"
+    }
+  },
+  "ModifierFireSurvivalDefault": {
+    "description": "Fire powerup setting for burning normal amount of time.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Normal"
+    }
+  },
+  "ModifierFireSurvivalLong": {
+    "description": "Fire powerup setting for burning longer than normal.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Long"
+    }
+  },
+  "ModifierFireSurvivalLonger": {
+    "description": "Fire powerup setting for burning much longer than normal.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Longer"
+    }
+  },
+  "ModifierFireSurvivalTorch": {
+    "description": "Fire powerup setting for burning extremely long.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Human Torch"
+    }
+  },
+  "ModifierFireSurvivalHint": {
+    "description": "Fire powerup hint for how long you burn.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Player with fire power survives burning for %s% seconds"
+    }
+  },
+  "ModifierFireSurvivalHintInstant": {
+    "description": "Fire powerup hint for when you burn instantly.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Player with fire power is a glass cannon"
+    }
+  },
+  "ModifierHoverDuration": {
+    "description": "Hover powerup setting for how long you can fly above water.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Hover Duration"
+    }
+  },
+  "ModifierHoverDurationHint": {
+    "description": "Hover powerup hint for how long you hover.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Hover for %s% seconds"
+    }
+  },
+  "ModifierHoverDurationHintInfinite": {
+    "description": "Hover powerup hint for infinite hover.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Hover over hazards forever!"
+    }
+  },
+  "ModifierHoverRefresh": {
+    "description": "Hover powerup setting for when your timer refreshes.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Timer Refresh"
+    }
+  },
+  "ModifierHoverRefreshGround": {
+    "description": "Hover powerup setting for refreshing on ground.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Ground"
+    }
+  },
+  "ModifierHoverRefreshRound": {
+    "description": "Hover powerup setting for refreshing each round.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Round"
+    }
+  },
+  "ModifierHoverRefreshHintGround": {
+    "description": "Hover powerup setting for refreshing on ground.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Refresh timer when touching ground"
+    }
+  },
+  "ModifierHoverRefreshHintRound": {
+    "description": "Hover powerup setting for refreshing on ground.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Refreshes timer each round"
+    }
+  },
+  "ModifierHoverPowerup": {
+    "description": "Hover powerup setting for which powerup activates hover.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Hover Powerup"
+    }
+  },
+  "ModifierCaffeineSpeed": {
+    "description": "Caffeinated powerup setting for how fast you move.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Speed Factor"
+    }
+  },
+  "ModifierCaffeineSpeedHint": {
+    "description": "Caffeinated powerup hint for how fast you move.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Multiply speed by %s%x"
+    }
+  },
+  "ModifierCaffeineSpeedHintDefault": {
+    "description": "Caffeinated powerup hint for moving regular caffeine speed.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Normal caffeinated speed"
+    }
+  },
+  "ModifierCaffeineAttackSpeed": {
+    "description": "Caffeinated powerup setting for how fast you attack.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Attack Speed"
+    }
+  },
+  "ModifierCaffeineAttackSpeedHintDecrease": {
+    "description": "Caffeinated powerup setting for attacking some percent slower.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Decrease melee speed by %s%%"
+    }
+  },
+  "ModifierCaffeineAttackSpeedHintIncrease": {
+    "description": "Caffeinated powerup setting for attacking some percent faster.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Increase melee speed by %s%%"
+    }
+  },
+  "ModifierCaffeineAttackSpeedHintNormal": {
+    "description": "Caffeinated powerup setting for attacking normal speed.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Normal caffeinated attack speed"
+    }
+  },
+  "ModifierMultiSplit": {
+    "description": "Multi-boomerang powerup setting for how many boomerangs split.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Split Number"
+    }
+  },
+  "ModifierMultiSplitHint": {
+    "description": "Multi-boomerang powerup hint for how many boomerangs split.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Splits into %s% boomerangs"
+    }
+  }
+}

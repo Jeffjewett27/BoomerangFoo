@@ -27,6 +27,7 @@ namespace BoomerangFoo.Powerups
         protected MultiBoomerangPowerup()
         {
             Name = "Multiboomerang";
+            LocalizationTerm = "powerup_multidisc";
             Bitmask = PowerupType.MultiDisc;
             BoomerangSplit = DefaultBoomerangsSplit;
         }
@@ -51,7 +52,7 @@ namespace BoomerangFoo.Powerups
         {
             if (hasGeneratedUI) return;
             base.GenerateUI();
-            var numBoomerangs = Modifiers.CloneModifierSetting($"customPowerup.{Name}.numBoomerangs", "Split Number", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
+            var numBoomerangs = Modifiers.CloneModifierSetting($"customPowerup.{Name}.numBoomerangs", "ModifierMultiSplit", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
             SettingIds.Add(numBoomerangs.id);
 
             string[] options = new string[19];
@@ -59,7 +60,7 @@ namespace BoomerangFoo.Powerups
             for (int i = 0; i < options.Length; i++)
             {
                 options[i] = (i+2).ToString();
-                hints[i] = $"Splits into {i+2} boomerangs";
+                hints[i] = $"ModifierMultiSplitHint__{i+2}";
             }
             numBoomerangs.SetSliderOptions(options, 3, hints);
             numBoomerangs.SetGameStartCallback((gameMode, sliderIndex) => {

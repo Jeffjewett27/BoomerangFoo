@@ -32,6 +32,7 @@ namespace BoomerangFoo.Powerups
         protected DecoyPowerup()
         {
             Name = "Decoy";
+            LocalizationTerm = "powerup_decoy";
             Bitmask = PowerupType.Decoy;
             MaxDecoyCount = DefaultMaxDecoyCount;
             ReviveAsDecoy = DefaultReviveAsDecoy;
@@ -57,17 +58,17 @@ namespace BoomerangFoo.Powerups
         {
             if (hasGeneratedUI) return;
             base.GenerateUI();
-            var maxDecoys = Modifiers.CloneModifierSetting($"customPowerup.{Name}.maxDecoys", "Maximum Decoys", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
+            var maxDecoys = Modifiers.CloneModifierSetting($"customPowerup.{Name}.maxDecoys", "ModifierDecoyMax", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
             SettingIds.Add(maxDecoys.id);
 
             string[] options = new string[31];
             string[] hints = new string[31];
-            options[0] = "Infinite";
-            hints[0] = "I am not responsible for what happens...";
+            options[0] = "ModifierInfinite";
+            hints[0] = "ModifierDecoyMaxWarning";
             for (int i = 1; i < 31; i++)
             {
                 options[i] = i.ToString();
-                hints[i] = $"Can spawn up to {i} decoys.";
+                hints[i] = $"ModifierDecoyMaxHint__{i}";
             }
             maxDecoys.SetSliderOptions(options, 1, hints);
             maxDecoys.SetGameStartCallback((gameMode, sliderIndex) => {
@@ -77,9 +78,9 @@ namespace BoomerangFoo.Powerups
             });
 
             //revive(TODO)
-            var revive = Modifiers.CloneModifierSetting($"customPowerup.{Name}.respawn", "Revive As Decoy", "ui_label_warmuplevel", $"customPowerup.{Name}.maxDecoys");
+            var revive = Modifiers.CloneModifierSetting($"customPowerup.{Name}.respawn", "ModifierDecoyRevive", "ui_label_warmuplevel", $"customPowerup.{Name}.maxDecoys");
             SettingIds.Add(revive.id);
-            revive.SetSliderOptions(["Off", "On"], 0, ["You die as normal", "You can take the place of your decoy"]);
+            revive.SetSliderOptions(["ui_off", "ui_on"], 0, ["ModifierDecoyReviveOffHint", "ModifierDecoyReviveOnHint"]);
             revive.SetGameStartCallback((gameMode, sliderIndex) =>
             {
                 DecoyPowerup.Instance.ReviveAsDecoy = (sliderIndex == 1);

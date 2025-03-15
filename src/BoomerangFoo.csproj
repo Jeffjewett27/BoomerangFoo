@@ -7,7 +7,7 @@
 	<GamePath>C:\Program Files (x86)\Steam\steamapps\common\Boomerang Fu</GamePath>
 	<AssemblyName>BoomerangFoo</AssemblyName>
     <Product>BoomerangFoo</Product>
-    <Version>0.4.0</Version>
+    <Version>0.4.1</Version>
 	<VersionSuffix></VersionSuffix>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <RestoreAdditionalProjectSources>
@@ -114,5 +114,9 @@
   
   <ItemGroup>
     <None Include="bin\export\boomerangfu\bepinex\config\BepInEx.cfg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\localization.json" />
   </ItemGroup>
 </Project>

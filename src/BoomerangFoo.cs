@@ -24,11 +24,6 @@ public class BoomerangFoo : BaseUnityPlugin
         harmony.PatchAll();
 
         // Register powerup hooks
-        //BamboozlePowerup.Register();
-        //DecoyPowerup.Register();
-        //FirePowerup.Register();
-        //MoveFasterPowerup.Register();
-        //FlyingPowerup.Register();
         CustomPowerup.Registered.Add(BamboozlePowerup.Instance);
         CustomPowerup.Registered.Add(DecoyPowerup.Instance);
         CustomPowerup.Registered.Add(ExplosivePowerup.Instance);
@@ -39,9 +34,9 @@ public class BoomerangFoo : BaseUnityPlugin
         CustomPowerup.Registered.Add(ShieldPowerup.Instance);
         CustomPowerup.ActivateAll();
 
-        GameMode.Register(new GameMode("Deathmatch", "Free For All", "Everyone is an enemy", SettingsManager.MatchType.DeathMatch, false, 0), GameMode.Slot.Deathmatch);
-        GameMode.Register(new GameMode("TeamDeathmatch", "Team Up", "Play in teams", SettingsManager.MatchType.DeathMatch, true, 1), GameMode.Slot.TeamUp);
-        GameMode.Register(new GameMode("HideAndSeek", "Hide And Seek", "Find your foes", SettingsManager.MatchType.HideAndSeek, false, 2), GameMode.Slot.HideAndSeek);
+        GameMode.Register(new GameMode("Deathmatch", "ui_deathmatch", "ui_helper_deathmatch", SettingsManager.MatchType.DeathMatch, false, 0), GameMode.Slot.Deathmatch);
+        GameMode.Register(new GameMode("TeamDeathmatch", "ui_teams", "ui_helper_teamup", SettingsManager.MatchType.DeathMatch, true, 1), GameMode.Slot.TeamUp);
+        GameMode.Register(new GameMode("HideAndSeek", "ui_hideandseek", "ui_helper_hideandseek", SettingsManager.MatchType.HideAndSeek, false, 2), GameMode.Slot.HideAndSeek);
         GameMode.Register(new GoldenBoomerang(), GameMode.Slot.GoldenBoomerang);
         PatchUIMenuMatchSettings.OnMatchTypeSelected += GameMode.MatchSelected;
 

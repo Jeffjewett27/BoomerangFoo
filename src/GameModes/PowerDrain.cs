@@ -14,7 +14,7 @@ namespace BoomerangFoo.GameModes
         public int PowerupsLostOnDeath = 1;
         public bool GivePityShield = false;
 
-        public PowerDrain() : base("PowerDrain", "Power Drain", "Kill to steal powers", SettingsManager.MatchType.DeathMatch, false, 0)
+        public PowerDrain() : base("PowerDrain", "GameModePowerDrainName", "GameModePowerDrainHint", SettingsManager.MatchType.DeathMatch, false, 0)
         {
             
         }
@@ -41,15 +41,15 @@ namespace BoomerangFoo.GameModes
             var header = Modifiers.CloneModifierSetting(headerId, name, "ui_boomerangs", "ui_label_friendlyfire");
 
             string lossId = $"gameMode.{id}.powerupLoss";
-            var loss = Modifiers.CloneModifierSetting(lossId, "Powerups Lost", "ui_label_warmuplevel", headerId);
+            var loss = Modifiers.CloneModifierSetting(lossId, "GameModePowerDrainLost", "ui_label_warmuplevel", headerId);
             string[] options = new string[5];
             string[] hints = new string[5];
-            options[0] = "All";
-            hints[0] = "Clears all powerups on death";
+            options[0] = "GameModePowerDrainLostAll";
+            hints[0] = "GameModePowerDrainLostHintAll";
             for (int i = 1; i < options.Length; i++)
             {
                 options[i] = i.ToString();
-                hints[i] = $"Lose {i} powerups on death";
+                hints[i] = $"GameModePowerDrainLostHint__{i}";
             }
             loss.SetSliderOptions(options, 1, hints);
             loss.SetGameStartCallback((gameMode, sliderIndex) =>
@@ -62,7 +62,7 @@ namespace BoomerangFoo.GameModes
 
             string shieldId = $"gameMode.{id}.pityShield";
             var swap = Modifiers.CloneModifierSetting(shieldId, "Pity Shield", "ui_label_warmuplevel", lossId);
-            swap.SetSliderOptions(["Off", "On"], 1, ["No shield", "Give a shield to powerupless players"]);
+            swap.SetSliderOptions(["ui_off", "ui_on"], 1, ["GameModePowerDrainPityHintOff", "GameModePowerDrainPityHintOn"]);
             swap.SetGameStartCallback((gameMode, sliderIndex) =>
             {
                 if (gameMode is PowerDrain drain)

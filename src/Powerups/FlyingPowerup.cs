@@ -38,6 +38,7 @@ namespace BoomerangFoo.Powerups
         protected FlyingPowerup()
         {
             Name = "Hovering";
+            LocalizationTerm = "PowerupHoverName";
             Bitmask = PowerupType.DashThroughWalls;
             Duration = DefaultDuration;
             ResetOnGround = DefaultResetOnGround;
@@ -66,18 +67,18 @@ namespace BoomerangFoo.Powerups
             base.GenerateUI();
 
             // hover duration
-            var flyDuration = Modifiers.CloneModifierSetting($"customPowerup.{Name}.duration", "Hover Duration", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
+            var flyDuration = Modifiers.CloneModifierSetting($"customPowerup.{Name}.duration", "ModifierHoverDuration", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
             SettingIds.Add(flyDuration.id);
 
             float[] hoverValues = [0.25f, 0.5f, 0.75f, 1f, 1.5f, 2f, 4f, 6f, 8f, 10f, 15f, 20f, float.MaxValue / 2];
             string[] options = new string[hoverValues.Length];
             string[] hints = new string[options.Length];
-            options[options.Length - 1] = "Infinite";
-            hints[options.Length-1] = "Hover over hazards forever!";
+            options[options.Length - 1] = "ModifierInfinite";
+            hints[options.Length-1] = "ModifierHoverDurationHintInfinite";
             for (int i = 0; i < hoverValues.Length-1; i++)
             {
                 options[i] = hoverValues[i].ToString();
-                hints[i] = $"Hover for {options[i]} seconds";
+                hints[i] = $"ModifierHoverDurationHint__{options[i]}";
             }
             flyDuration.SetSliderOptions(options, 3, hints);
             flyDuration.SetGameStartCallback((gameMode, sliderIndex) => {
@@ -85,15 +86,15 @@ namespace BoomerangFoo.Powerups
             });
 
             // refresh
-            var timeRefresh = Modifiers.CloneModifierSetting($"customPowerup.{Name}.timeRefresh", "Timer Refresh", "ui_label_warmuplevel", $"customPowerup.{Name}.duration");
+            var timeRefresh = Modifiers.CloneModifierSetting($"customPowerup.{Name}.timeRefresh", "ModifierHoverRefresh", "ui_label_warmuplevel", $"customPowerup.{Name}.duration");
             SettingIds.Add(timeRefresh.id);
-            timeRefresh.SetSliderOptions(["Ground", "Round"], 0, ["Refresh timer when touching ground", "Refreshes timer each round"]);
+            timeRefresh.SetSliderOptions(["ModifierHoverRefreshGround", "ModifierHoverRefreshRound"], 0, ["ModifierHoverRefreshHintGround", "ModifierHoverRefreshHintRound"]);
             timeRefresh.SetGameStartCallback((gameMode, sliderIndex) => {
                 FlyingPowerup.Instance.ResetOnGround = (sliderIndex == 0);
             });
 
             // powerup
-            var powerup = Modifiers.CloneModifierSetting($"customPowerup.{Name}.powerup", "Hover Powerup", "powerupSelections", $"customPowerup.{Name}.timeRefresh");
+            var powerup = Modifiers.CloneModifierSetting($"customPowerup.{Name}.powerup", "ModifierHoverPowerup", "powerupSelections", $"customPowerup.{Name}.timeRefresh");
             powerup.PreparePowerupToggles(PowerupType.None);
             powerup.SetGameStartCallback((gameMode, powerups) =>
             {

@@ -12,7 +12,7 @@ namespace BoomerangFoo.GameModes
 
         private static readonly FieldInfo goldenTimeUIClock = typeof(Player).GetField("goldenTimeUIClock", BindingFlags.Instance | BindingFlags.NonPublic);
 
-        public TeamGolden() : base("TeamGolden", "Team Golden", "Golden boomerang with teams", SettingsManager.MatchType.GoldenDisc, true, 3)
+        public TeamGolden() : base("TeamGolden", "GameModeTeamGoldenName", "GameModeTeamGoldenHint", SettingsManager.MatchType.GoldenDisc, true, 3)
         {
         }
 

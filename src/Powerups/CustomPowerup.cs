@@ -30,6 +30,9 @@ namespace BoomerangFoo.Powerups
         protected CustomPowerup() { }
 
         public string Name { get; protected set; }
+
+        public string LocalizationTerm { get; protected set; }
+
         public PowerupType Bitmask { get; protected set; }
         public List<string> SettingIds { get; } = [];
 
@@ -49,7 +52,8 @@ namespace BoomerangFoo.Powerups
         {
             if (hasGeneratedUI) return;
             hasGeneratedUI = true;
-            var header = Modifiers.CloneModifierSetting($"customPowerup.{Name}.header", Name, "ui_boomerangs", "boomerangSize");
+            string nameText = LocalizationTerm ?? Name;
+            var header = Modifiers.CloneModifierSetting($"customPowerup.{Name}.header", nameText, "ui_boomerangs", "boomerangSize");
             SettingIds.Add(header.id);
         }
     }

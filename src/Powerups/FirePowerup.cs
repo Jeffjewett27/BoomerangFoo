@@ -23,6 +23,7 @@ namespace BoomerangFoo.Powerups
         protected FirePowerup()
         {
             Name = "Fire";
+            LocalizationTerm = "powerup_firedisc";
             Bitmask = PowerupType.FireDisc;
             BurnDuration = originalBurnDuration;
         }
@@ -47,17 +48,17 @@ namespace BoomerangFoo.Powerups
             base.GenerateUI();
 
             // defaultRadius
-            var fireDuration = Modifiers.CloneModifierSetting($"customPowerup.{Name}.defaultRadius", "Burning Survival", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
+            var fireDuration = Modifiers.CloneModifierSetting($"customPowerup.{Name}.defaultRadius", "ModifierFireSurvival", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
             SettingIds.Add(fireDuration.id);
 
             float[] burnValues = [0.2f, 1.25f, 2.5f, 4f, 8f, 20f];
-            string[] options = ["Instant", "Short", "Default", "Long", "Longer", "Human Torch"];
+            string[] options = ["ModifierFireSurvivalInstant", "ModifierFireSurvivalShort", "ModifierFireSurvivalDefault", "ModifierFireSurvivalLong", "ModifierFireSurvivalLonger", "ModifierFireSurvivalTorch"];
             string[] hints = new string[options.Length];
             for (int i = 1; i < burnValues.Length; i++)
             {
-                hints[i] = $"Player with fire power survives burning for {burnValues[i]} seconds";
+                hints[i] = $"ModifierFireSurvivalHint__{burnValues[i]}";
             }
-            hints[0] = "Player with fire power is a glass cannon";
+            hints[0] = "ModifierFireSurvivalHintInstant";
             fireDuration.SetSliderOptions(options, 2, hints);
             fireDuration.SetGameStartCallback((gameMode, sliderIndex) => {
                 FirePowerup.Instance.BurnDuration = burnValues[sliderIndex];

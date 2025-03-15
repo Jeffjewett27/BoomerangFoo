@@ -31,6 +31,7 @@ namespace BoomerangFoo.Powerups
         protected BamboozlePowerup()
         {
             Name = "Bamboozled";
+            LocalizationTerm = "powerup_reverseinputs";
             Immunity = DefaultImmunity;
             Duration = DefaultDuration;
         }
@@ -52,18 +53,18 @@ namespace BoomerangFoo.Powerups
             base.GenerateUI();
 
             // duration
-            var duration = Modifiers.CloneModifierSetting($"customPowerup.{Name}.duration", "Duration", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
+            var duration = Modifiers.CloneModifierSetting($"customPowerup.{Name}.duration", "ModifierBamboozleDuration", "ui_label_edgeprotection", $"customPowerup.{Name}.header");
             SettingIds.Add(duration.id);
 
             float[] durationValues = [1f, 2f, 3f, 4f, 6f, 9f, 12f, 15f, float.MaxValue / 2];
             string[] options = new string[durationValues.Length];
             string[] hints = new string[options.Length];
-            options[options.Length - 1] = "Infinite";
-            hints[options.Length - 1] = "Lasts until end of round";
+            options[options.Length - 1] = "ModifierInfinite";
+            hints[options.Length - 1] = "ModifierBamboozleDurationHintInfinite";
             for (int i = 0; i < options.Length-1; i++)
             {
                 options[i] = durationValues[i].ToString();
-                hints[i] = $"Bamboozled for {options[i]} seconds";
+                hints[i] = $"ModifierBamboozleDurationHint__{options[i]}";
             }
             duration.SetSliderOptions(options, 4, hints);
             duration.SetGameStartCallback((gameMode, sliderIndex) => {

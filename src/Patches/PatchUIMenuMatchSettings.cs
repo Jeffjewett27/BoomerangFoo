@@ -9,6 +9,7 @@ using System.Reflection;
 using BoomerangFoo.UI;
 using I2.Loc;
 using UnityEngine.UI;
+using BoomerangFoo.Localization;
 
 namespace BoomerangFoo.Patches
 {
@@ -85,6 +86,8 @@ namespace BoomerangFoo.Patches
 
         static void Postfix(UIMenuMatchSettings __instance)
         {
+            var customLocalization = LocalizationData.LoadLocalizations();
+            LocalizationData.RegisterCustomLocalizations(customLocalization);
             //BoomerangFoo.Logger.LogInfo($"Logging localization keys, {LocalizationManager.Sources.Count}");
             //foreach (var mKeyPair in LocalizationManager.Sources[0].mDictionary)
             //{
@@ -119,9 +122,8 @@ namespace BoomerangFoo.Patches
                     Localize localize = null;
 
                     buttonText.text = gamemode.name;
-                    // this destroys the localization for the default options. not elegant
                     localize = buttonText.GetComponentInChildren<I2.Loc.Localize>();
-                    Component.Destroy(localize);
+                    localize.Term = gamemode.name;
 
                     GameMode.Slot slot = (GameMode.Slot)i;
                     var uiButton = newButton.GetComponent<UIButton>();
@@ -156,7 +158,7 @@ namespace BoomerangFoo.Patches
                     var hintText = newHint.GetComponentInChildren<TextMeshProUGUI>();
                     hintText.text = gamemode.hint;
                     localize = newHint.GetComponentInChildren<I2.Loc.Localize>();
-                    Component.Destroy(localize);
+                    localize.Term = gamemode.hint;
                 }
 
                 for (int i = 0; i < 4; i++)

@@ -91,8 +91,9 @@ namespace BoomerangFoo.UI
             var slider = newSettingGO.transform.GetChild(1).GetComponent<UISliderButton>();
             var labelTextMesh = newSettingGO.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
             labelTextMesh.text = newLabel;
-            labelTextMesh.GetComponentInChildren<Localize>().Term = id;
-            Component.Destroy(newSettingGO.transform.GetChild(0).GetComponentInChildren<Localize>());
+            labelTextMesh.GetComponentInChildren<Localize>().Term = newLabel;
+            //Component.Destroy(newSettingGO.transform.GetChild(0).GetComponentInChildren<Localize>());
+            newSettingGO.transform.GetChild(0).GetComponentInChildren<Localize>().Term = newLabel;
 
             var newSetting = new ModifierSetting(cloneModifier.type, id, newLabel, newSettingGO, slider);
             settings[newSetting.id] = newSetting;

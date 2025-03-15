@@ -25,6 +25,7 @@ namespace BoomerangFoo.Powerups
         protected ExplosivePowerup()
         {
             Name = "Explosive";
+            LocalizationTerm = "powerup_explosivedisc";
             Bitmask = PowerupType.ExplosiveDisc;
             RadiusMultiplier = DefaultRadiusMultiplier;
             FreezingRadiusMultiplier = DefaultFreezingRadiusMultiplier;
@@ -46,11 +47,11 @@ namespace BoomerangFoo.Powerups
             for (int i = 0; i < radiusValues.Length; i++)
             {
                 radiusOptions[i] = radiusValues[i].ToString();
-                radiusHints[i] = $"Multiply explosion radius by {radiusOptions[i]}x";
+                radiusHints[i] = $"ModifierExplosionRadiusHint__{radiusValues[i]}";
             }
-            radiusHints[3] = "Normal explosion radius";
-            radiusOptions[radiusOptions.Length - 1] = "NUKE";
-            radiusHints[radiusHints.Length - 1] = "nuke.";
+            radiusHints[3] = "ModifierExplosionRadiusNormalHint";
+            radiusOptions[radiusOptions.Length - 1] = "ModifierExplosionRadiusNuke";
+            radiusHints[radiusHints.Length - 1] = "ModifierExplosionRadiusNukeHint";
             defaultRadius.SetSliderOptions(radiusOptions, 3, radiusHints);
             defaultRadius.SetGameStartCallback((gameMode, sliderIndex) => {
                 ExplosivePowerup.Instance.RadiusMultiplier = radiusValues[sliderIndex];
@@ -66,18 +67,18 @@ namespace BoomerangFoo.Powerups
             for (int i = 0; i < freezeValues.Length; i++)
             {
                 freezeOptions[i] = freezeValues[i].ToString();
-                freezeHints[i] = $"Ice boomerangs explosion radius multiplied by additional {freezeOptions[i]}x";
+                freezeHints[i] = $"ModifierExplosionIceRadiusHint__{freezeOptions[i]}";
             }
-            freezeHints[3] = "Ice boomerangs explosion radius is default";
-            freezeOptions[freezeOptions.Length - 1] = "Ice Age";
-            freezeHints[freezeHints.Length - 1] = "Global freezing";
+            freezeHints[3] = "ModifierExplosionIceRadiusDefaultHint";
+            freezeOptions[freezeOptions.Length - 1] = "ModifierExplosionIceAgeRadius";
+            freezeHints[freezeHints.Length - 1] = "ModifierExplosionIceAgeRadiusHint";
             freezeRadius.SetSliderOptions(freezeOptions, 3, freezeHints);
             freezeRadius.SetGameStartCallback((gameMode, sliderIndex) => {
                 ExplosivePowerup.Instance.FreezingRadiusMultiplier = freezeValues[sliderIndex];
             });
 
             // miniRadius
-            var miniRadius = Modifiers.CloneModifierSetting($"customPowerup.{Name}.miniRadius", "Multi-Boomerang Factor", "ui_label_edgeprotection", $"customPowerup.{Name}.freezeRadius");
+            var miniRadius = Modifiers.CloneModifierSetting($"customPowerup.{Name}.miniRadius", "ModifierExplosionMultiRadius", "ui_label_edgeprotection", $"customPowerup.{Name}.freezeRadius");
             SettingIds.Add(miniRadius.id);
 
             float[] miniValues = [0.25f, 0.5f, 0.75f, 1f, 1.25f, 1.5f, 2f, 2.5f, 3f];
@@ -86,9 +87,9 @@ namespace BoomerangFoo.Powerups
             for (int i = 0; i < miniValues.Length; i++)
             {
                 miniOptions[i] = miniValues[i].ToString();
-                miniHints[i] = $"Multi-Boomerangs explosion radius multiplied by additional {miniOptions[i]}x";
+                miniHints[i] = $"ModifierExplosionMultiRadiusHint__{miniOptions[i]}";
             }
-            miniHints[3] = "Multi-Boomerangs explosion radius is default";
+            miniHints[3] = "ModifierExplosionMultiRadiusHintDefault";
             miniRadius.SetSliderOptions(miniOptions, 3, miniHints);
             miniRadius.SetGameStartCallback((gameMode, sliderIndex) => {
                 ExplosivePowerup.Instance.MiniRadiusMultiplier = miniValues[sliderIndex];
