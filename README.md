@@ -5,9 +5,6 @@ Boomerang Foo: Chaos Mod
 
 Boomerang Foo: Chaos Mod (BFoo for short) is a mod for the 2020 couch PvP party game *Boomerang Fu* by Cranky Watermelon. BFoo provides custom settings, powerup modifiers, and gamemodes. It is built with the [BepInEx](https://github.com/BepInEx/BepInEx/) runtime patching framework. The mod was originally created by @ws13sk and adapted to BepInEx by @Jeffjewett27. 
 
-> [!IMPORTANT]
-> This mod is currently only compatible with version 1.3.4. The 1.3.5 patch released on March 29, 2025 has broken the mod. For now, you can either downpatch to v1.3.4 or disable the mod by deleting `Bepinex/plugins/BoomerangFoo/BoomerangFoo.dll`. I will update the mod when I have time.
-
 ## Installation
 
 1. Download `BoomerangFoo-<version>.zip` in the releases.
