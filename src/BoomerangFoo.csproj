@@ -2,12 +2,12 @@
 
   <PropertyGroup>
 	  
-	<TargetFramework>netstandard2.0</TargetFramework>
+	<TargetFramework>netstandard2.1</TargetFramework>
 	<LangVersion>12.0</LangVersion>
 	<GamePath>C:\Program Files (x86)\Steam\steamapps\common\Boomerang Fu</GamePath>
 	<AssemblyName>BoomerangFoo</AssemblyName>
     <Product>BoomerangFoo</Product>
-    <Version>0.4.1</Version>
+    <Version>0.4.2</Version>
 	<VersionSuffix></VersionSuffix>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <RestoreAdditionalProjectSources>
@@ -57,6 +57,9 @@
 	  </Reference>
 	  <Reference Include="UnityEngine.TextMeshPro">
 		  <HintPath>$(GamePath)\Boomerang Fu_Data\Managed\UnityEngine.UI.dll</HintPath>
+	  </Reference>
+	  <Reference Include="FMODUnity">
+		  <HintPath>$(GamePath)\Boomerang Fu_Data\Managed\FMODUnity.dll</HintPath>
 	  </Reference>
   </ItemGroup>
 
