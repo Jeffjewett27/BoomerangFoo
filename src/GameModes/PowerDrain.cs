@@ -111,7 +111,15 @@ namespace BoomerangFoo.GameModes
             {
                 player.alertBar.HideAlert();
             }
-            PowerupType powerupType = Singleton<LevelManager>.Instance.SelectRandomPower(player);
+            PowerupType powerupType;
+            if (Singleton<LevelManager>.Instance.possiblePowerups.Count > 0)
+            {
+                powerupType = Singleton<LevelManager>.Instance.SelectRandomPower(player);
+            }
+            else
+            {
+                powerupType = PowerupType.Shield;
+            }
             player.alertBar.ShowPowerup(powerupType);
             Singleton<ParticleManager>.Instance.PlayPFX(PFXType.SparkleBurst, player.transform.position, player.alertBar.GetPowerupColor(powerupType));
             Singleton<AudioManager>.Instance.PlayOneShotAttached("event:/powerups/collect_power", player.gameObject);
