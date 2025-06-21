@@ -187,7 +187,7 @@ namespace BoomerangFoo.GameModes
             if (Modifiers.settings.ContainsKey("ui_label_suddendeath"))
             {
                 var spawnRate = Modifiers.settings["ui_label_suddendeath"];
-                spawnRate.SetSliderOptions(["ui_instant", "15 seconds", "ui_30secs", "1 min", "1.5 mins", "ui_2mins", "3 mins", "4 mins", "6 mins", "8 mins", "10 mins", "Infinite"], 0, null);
+                spawnRate.SetSliderOptions(["ui_instant", "15 seconds", "ui_30secs", "1 min", "1.5 mins", "ui_2mins", "3 mins", "4 mins", "6 mins", "8 mins", "10 mins", "Infinite"], 5, null);
                 int[] suddenDeathValues = { 0, 15, 30, 60, 90, 120, 180, 240, 360, 480, 600, int.MaxValue / 2 };
                 spawnRate.SetGameStartCallback((gameMode, sliderIndex) =>
                 {
