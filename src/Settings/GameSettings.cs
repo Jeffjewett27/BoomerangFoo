@@ -12,7 +12,11 @@ namespace BoomerangFoo.Settings
 
         public bool RapidPowerUpSpawning = _CustomSettings.RapidPowerUpSpawning;
         public int MatchScoreLimit = _CustomSettings.MatchScoreLimit;
+        public float SuddenDeathTimeLimit = _CustomSettings.SuddenDeathTimeLimit;
 
         public PowerupType StartupPowerUps = _CustomSettings.StartupPowerUps;
+        public bool NoBoomerangs = true;
+
+        public float KnockbackFactor = 1f;
     }
 }

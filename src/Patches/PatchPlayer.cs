@@ -232,6 +232,32 @@ namespace BoomerangFoo.Patches
         }
     }
 
+    [HarmonyPatch(typeof(Player), nameof(Player.PickUpDisc))]
+    class PlayerPickUpDiscPatch
+    {
+        static bool Prefix(Player __instance)
+        {
+            if (GameMode.selected.gameSettings.NoBoomerangs)
+            {
+                return false; // don't pick up boomerangs
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(Player), nameof(Player.RespawnDisc))]
+    class PlayerRespawnDiscPatch
+    {
+        static bool Prefix(Player __instance)
+        {
+            if (GameMode.selected.gameSettings.NoBoomerangs)
+            {
+                return false; // don't pick up boomerangs
+            }
+            return true;
+        }
+    }
+
     [HarmonyPatch(typeof(Player), nameof(Player.Die))]
     class PlayerDiePatch
     {

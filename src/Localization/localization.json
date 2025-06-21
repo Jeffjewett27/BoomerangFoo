@@ -612,5 +612,61 @@
     "translations": {
       "English": "Splits into %s% boomerangs"
     }
+  },
+  "ModifierShieldRound": {
+    "description": "The modifier setting for giving a shield each round",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Each Round"
+    }
+  },
+  "ModifierShieldEachRoundOffHint": {
+    "description": "A hint for shield 'Each round' setting being off.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "No additional shields are applied"
+    }
+  },
+  "ModifierShieldEachRoundOnHint": {
+    "description": "A hint for shield 'Each round' setting being on.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Everybody gets a shield each round"
+    }
+  },
+  "NoBoomerangs": {
+    "description": "A modifier for whether boomerangs should spawn.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "No Boomerangs"
+    }
+  },
+  "NoBoomerangsOffHint": {
+    "description": "A hint for boomerangs appearing as normal.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Boomerangs spawn normally"
+    }
+  },
+  "NoBoomerangsOnHint": {
+    "description": "A hint for boomerangs being disabled.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Player boomerangs disabled"
+    }
+  },
+  "KnockbackModifier": {
+    "description": "Modifier to change the knockback distance multiplier.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "Knockback Factor"
+    }
+  },
+  "ModifierKnockbackHint": {
+    "description": "Hint for changing the knockback by some factor.",
+    "contributions": "Jeff Jewett",
+    "translations": {
+      "English": "%s%x"
+    }
   }
 }

@@ -12,6 +12,7 @@ namespace BoomerangFoo
     {
         // Shield
         public int shieldHits = ShieldPowerup.Instance.ShieldHits;
+        public Renderer shieldRenderer = null;
 
         // Multiboomerang
         public int multiBoomerangSplit = MultiBoomerangPowerup.Instance.BoomerangSplit;

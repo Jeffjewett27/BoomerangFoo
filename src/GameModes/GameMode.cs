@@ -184,6 +184,18 @@ namespace BoomerangFoo.GameModes
                     }
                 });
             }
+            if (Modifiers.settings.ContainsKey("ui_label_suddendeath"))
+            {
+                var spawnRate = Modifiers.settings["ui_label_suddendeath"];
+                spawnRate.SetSliderOptions(["ui_instant", "15 seconds", "ui_30secs", "1 min", "1.5 mins", "ui_2mins", "3 mins", "4 mins", "6 mins", "8 mins", "10 mins", "Infinite"], 0, null);
+                int[] suddenDeathValues = { 0, 15, 30, 60, 90, 120, 180, 240, 360, 480, 600, int.MaxValue / 2 };
+                spawnRate.SetGameStartCallback((gameMode, sliderIndex) =>
+                {
+                    BoomerangFoo.Logger.LogInfo($"Sudden death: prev {Singleton<SettingsManager>.Instance.MatchSettings.suddenDeathTime}, new {suddenDeathValues[sliderIndex]} [{sliderIndex}], custom {gameMode.gameSettings.SuddenDeathTimeLimit};");
+                    Singleton<SettingsManager>.Instance.MatchSettings.suddenDeathTime = suddenDeathValues[sliderIndex];
+                    gameMode.gameSettings.SuddenDeathTimeLimit = suddenDeathValues[sliderIndex];
+                });
+            }
             if (Modifiers.settings.ContainsKey("ui_label_matchlength"))
             {
                 var matchLength = Modifiers.settings["ui_label_matchlength"];
@@ -207,6 +219,33 @@ namespace BoomerangFoo.GameModes
                     {
                         gameMode.gameSettings.MatchScoreLimit = sliderIndex - 2;
                     }
+                });
+            }
+            if (!Modifiers.settings.ContainsKey("noBoomerangs"))
+            {
+                var noBoomerangs = Modifiers.CloneModifierSetting($"noBoomerangs", "NoBoomerangs", "ui_label_warmuplevel", $"boomerangSize");
+                noBoomerangs.SetSliderOptions(["ui_off", "ui_on"], 0, ["NoBoomerangsOffHint", "NoBoomerangsOnHint"]);
+                noBoomerangs.SetGameStartCallback((gameMode, sliderIndex) =>
+                {
+                    gameMode.gameSettings.NoBoomerangs = (sliderIndex == 1);
+                });
+            }
+            if (!Modifiers.settings.ContainsKey("knockback"))
+            {
+                BoomerangFoo.Logger.LogInfo("creating knockback");
+                var knockback = Modifiers.CloneModifierSetting($"knockback", "KnockbackModifier", "ui_label_warmuplevel", $"noBoomerangs");
+                float[] kbValues = { 0.1f, 0.3f, 0.5f, 0.8f, 1f, 1.2f, 1.5f, 2f, 2.5f, 3f, 4f, 5f, 6f, 8f, 10f, 15f };
+                string[] kbOptions = new string[kbValues.Length];
+                string[] kbHints = new string[kbOptions.Length];
+                for (int i = 0; i < kbValues.Length; i++)
+                {
+                    kbOptions[i] = kbValues[i].ToString();
+                    kbHints[i] = $"ModifierKnockbackHint__{kbOptions[i]}";
+                }
+                knockback.SetSliderOptions(kbOptions, 4, kbHints);
+                knockback.SetGameStartCallback((gameMode, sliderIndex) =>
+                {
+                    gameMode.gameSettings.KnockbackFactor = kbValues[sliderIndex];
                 });
             }
             if (!Modifiers.settings.ContainsKey("startPowers"))
