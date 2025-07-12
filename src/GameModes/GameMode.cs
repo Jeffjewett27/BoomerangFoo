@@ -191,7 +191,6 @@ namespace BoomerangFoo.GameModes
                 int[] suddenDeathValues = { 0, 15, 30, 60, 90, 120, 180, 240, 360, 480, 600, int.MaxValue / 2 };
                 spawnRate.SetGameStartCallback((gameMode, sliderIndex) =>
                 {
-                    BoomerangFoo.Logger.LogInfo($"Sudden death: prev {Singleton<SettingsManager>.Instance.MatchSettings.suddenDeathTime}, new {suddenDeathValues[sliderIndex]} [{sliderIndex}], custom {gameMode.gameSettings.SuddenDeathTimeLimit};");
                     Singleton<SettingsManager>.Instance.MatchSettings.suddenDeathTime = suddenDeathValues[sliderIndex];
                     gameMode.gameSettings.SuddenDeathTimeLimit = suddenDeathValues[sliderIndex];
                 });
@@ -232,7 +231,6 @@ namespace BoomerangFoo.GameModes
             }
             if (!Modifiers.settings.ContainsKey("knockback"))
             {
-                BoomerangFoo.Logger.LogInfo("creating knockback");
                 var knockback = Modifiers.CloneModifierSetting($"knockback", "KnockbackModifier", "ui_label_warmuplevel", $"noBoomerangs");
                 float[] kbValues = { 0.1f, 0.3f, 0.5f, 0.8f, 1f, 1.2f, 1.5f, 2f, 2.5f, 3f, 4f, 5f, 6f, 8f, 10f, 15f };
                 string[] kbOptions = new string[kbValues.Length];

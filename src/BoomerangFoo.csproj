@@ -7,7 +7,7 @@
 	<GamePath>C:\Program Files (x86)\Steam\steamapps\common\Boomerang Fu</GamePath>
 	<AssemblyName>BoomerangFoo</AssemblyName>
     <Product>BoomerangFoo</Product>
-    <Version>0.5.2</Version>
+    <Version>0.5.3</Version>
 	<VersionSuffix></VersionSuffix>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <RestoreAdditionalProjectSources>
@@ -61,6 +61,10 @@
 	  <Reference Include="FMODUnity">
 		  <HintPath>$(GamePath)\Boomerang Fu_Data\Managed\FMODUnity.dll</HintPath>
 	  </Reference>
+	  <Reference Include="Rewired">
+		  <HintPath>$(GamePath)\Boomerang Fu_Data\Managed\Rewired_Core.dll</HintPath>
+	  </Reference>
+
   </ItemGroup>
 
     <Target Name="CopyOutputFiles" AfterTargets="Build">

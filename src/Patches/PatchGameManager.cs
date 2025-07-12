@@ -2,6 +2,8 @@
 using HarmonyLib;
 using BoomerangFoo.GameModes;
 using System.Collections;
+using UnityEngine;
+using BoomerangFoo.Settings;
 
 namespace BoomerangFoo.Patches
 {
@@ -205,6 +207,37 @@ namespace BoomerangFoo.Patches
             GameMode.Relationship relationship = PatchGameManager.PlayerRelationship(__instance, player, player2);
             __result = relationship == GameMode.Relationship.Opponent;
             return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(GameManager), nameof(GameManager.Setup))]
+    class GameManagerSetupPatch
+    {
+        static void Postfix(GameManager __instance)
+        {
+            int maxPlayers = ModSettings.Instance.MaxPlayers;
+            Array.Resize(ref __instance.hintBars, maxPlayers);
+            Array.Resize(ref __instance.alertBars, maxPlayers);
+            Array.Resize(ref __instance.powerupBars, maxPlayers);
+            for (int i = 6; i < maxPlayers; i++)
+            {
+                __instance.characterColors.Add(i, __instance.characterColors[i % 6]);
+                HintBar origHintBar = __instance.hintBars[i % 6];
+                GameObject hintbarObject = UnityEngine.Object.Instantiate(origHintBar.transform.gameObject);
+                hintbarObject.transform.SetParent(origHintBar.transform.parent, false);
+                __instance.hintBars[i] = hintbarObject.GetComponent<HintBar>();
+
+                AlertBar origAlertBar = __instance.alertBars[i % 6];
+                GameObject alertbarObject = UnityEngine.Object.Instantiate(origAlertBar.transform.gameObject);
+                alertbarObject.transform.SetParent(origAlertBar.transform.parent, false);
+                __instance.alertBars[i] = alertbarObject.GetComponent<AlertBar>();
+
+                PowerupBar origPowerupBar = __instance.powerupBars[i % 6];
+                GameObject powerupObject = UnityEngine.Object.Instantiate(origPowerupBar.transform.gameObject);
+                powerupObject.transform.SetParent(origPowerupBar.transform.parent, false);
+                __instance.powerupBars[i] = powerupObject.GetComponent<PowerupBar>();
+
+            }
         }
     }
 }

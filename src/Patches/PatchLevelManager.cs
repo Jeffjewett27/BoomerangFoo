@@ -1,4 +1,5 @@
 ﻿using BoomerangFoo.GameModes;
+using BoomerangFoo.Settings;
 using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,6 +90,22 @@ namespace BoomerangFoo.Patches
                 maxSpawnedPowerups = -1;
                 powerupsSpawnedThisRound = -1;
                 powerupSpawnAttemptsThisRound = -1;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(LevelManager), nameof(LevelManager.BuildMatchPlaylist))]
+    class LevelManagerBuildMatchPlaylistPatch
+    {
+        static void Prefix(LevelManager __instance)
+        {
+            // Allow levels to accomodate the new maximum number of players.
+            foreach (var levelAsset in __instance.levelAssets)
+            {
+                if (levelAsset.maxPlayers == 6)
+                {
+                    levelAsset.maxPlayers = ModSettings.Instance.MaxPlayers;
+                }
             }
         }
     }
