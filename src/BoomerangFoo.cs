@@ -3,6 +3,7 @@ using BepInEx.Logging;
 using BoomerangFoo.GameModes;
 using BoomerangFoo.Patches;
 using BoomerangFoo.Powerups;
+using BoomerangFoo.Settings;
 using HarmonyLib;
 using TMPro;
 using UnityEngine;
@@ -57,6 +58,11 @@ public class BoomerangFoo : BaseUnityPlugin
             {
                 BoomerangFoo.Logger.LogInfo("Debug mode toggled");
                 Singleton<SettingsManager>.Instance.debugMode = !Singleton<SettingsManager>.Instance.debugMode;
+            }
+
+            if (GameMode.selected?.gameSettings != null)
+            {
+                Singleton<TimeKeeper>.Instance.targetScale = GameMode.selected.gameSettings.GameSpeed;
             }
         };
     }

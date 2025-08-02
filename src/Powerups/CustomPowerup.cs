@@ -53,7 +53,7 @@ namespace BoomerangFoo.Powerups
             if (hasGeneratedUI) return;
             hasGeneratedUI = true;
             string nameText = LocalizationTerm ?? Name;
-            var header = Modifiers.CloneModifierSetting($"customPowerup.{Name}.header", nameText, "ui_boomerangs", "knockback");
+            var header = Modifiers.CloneModifierSetting($"customPowerup.{Name}.header", nameText, "ui_boomerangs", "gameSpeed");
             SettingIds.Add(header.id);
         }
     }

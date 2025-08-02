@@ -246,6 +246,31 @@ namespace BoomerangFoo.GameModes
                     gameMode.gameSettings.KnockbackFactor = kbValues[sliderIndex];
                 });
             }
+            if (!Modifiers.settings.ContainsKey("gameSpeed"))
+            {
+                var gameSpeed = Modifiers.CloneModifierSetting($"gameSpeed", "GameSpeedModifier", "ui_label_warmuplevel", $"knockback");
+                int[] gameSpeedValues = { 10, 25, 50, 75, 90, 100, 110, 125, 150, 175, 200, 250, 300, 350, 400, 500 };
+                string[] gameSpeedOptions = new string[gameSpeedValues.Length];
+                string[] gameSpeedHints = new string[gameSpeedOptions.Length];
+                int defaultIndex = 0;
+                for (int i = 0; i < gameSpeedValues.Length; i++)
+                {
+                    gameSpeedOptions[i] = $"{gameSpeedValues[i]}%";
+                    gameSpeedHints[i] = $"ModifierGameSpeedHint__{gameSpeedValues[i]}";
+                    if (gameSpeedValues[i] == 100)
+                    {
+                        gameSpeedOptions[i] = $"Normal";
+                        gameSpeedHints[i] = "ModifierGameSpeedHintDefault";
+                        defaultIndex = i;
+                    }
+
+                }
+                gameSpeed.SetSliderOptions(gameSpeedOptions, defaultIndex, gameSpeedHints);
+                gameSpeed.SetGameStartCallback((gameMode, sliderIndex) =>
+                {
+                    gameMode.gameSettings.GameSpeed = (float)gameSpeedValues[sliderIndex] / 100;
+                });
+            }
             if (!Modifiers.settings.ContainsKey("startPowers"))
             {
                 var test = Modifiers.CloneModifierSetting("startPowers", "Starting Powers", "powerupSelections", "maxPowerups");

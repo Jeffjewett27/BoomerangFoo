@@ -18,5 +18,6 @@ namespace BoomerangFoo.Settings
         public bool NoBoomerangs = true;
 
         public float KnockbackFactor = 1f;
+        public float GameSpeed = 1f;
     }
 }
