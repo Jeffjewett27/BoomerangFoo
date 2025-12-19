@@ -1,4 +1,14 @@
-appid=965680
+#!/usr/bin/env bash
+set -u
+
+APPID="965680"
+REPO="Jeffjewett27/BoomerangFoo"
+
+say() { printf '%s\n' "$*"; }
+warn() { printf 'WARN: %s\n' "$*" >&2; }
+die() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
+
+need_cmd() { command -v "$1" >/dev/null 2>&1 || die "Missing dependency: $1"; }
 
 # likely Steam roots on Steam Deck (native + Flatpak)
 steam_roots=(
