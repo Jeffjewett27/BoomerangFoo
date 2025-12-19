@@ -97,3 +97,26 @@ zipfile="$tmpdir/mod.zip"
 
 say "Downloading: $dl_url"
 curl -fL "$dl_url" -o "$zipfile" || die "Download failed"
+
+say "Installing (overwrite matching files; do not delete anything)..."
+# -o overwrite, -q quiet; unzip never deletes extra files in destination
+unzip -o -q "$zipfile" -d "$GAME_DIR" || die "Unzip failed"
+
+# Proton/Wine DLL override (optional)
+if command -v protontricks >/dev/null 2>&1; then
+  say "Setting Wine DLL override winhttp=native,builtin (via protontricks)..."
+  if protontricks "$APPID" -c \
+    "wine reg add 'HKCU\\Software\\Wine\\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" \
+    >/dev/null 2>&1; then
+    say "DLL override set (or already was set)."
+  else
+    warn "protontricks is installed but the registry command failed."
+    warn "You can do it manually in Proton/Wine: winecfg -> Libraries -> add override for winhttp (native,builtin)."
+  fi
+else
+  warn "protontricks not installed; skipping Wine DLL override."
+  warn "If the mod doesn't load under Proton, install protontricks and add winhttp override (native,builtin)."
+fi
+
+say "Done."
+say "Tip: launch the game once, then check: $GAME_DIR/BepInEx/LogOutput.log"
