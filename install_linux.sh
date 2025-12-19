@@ -119,8 +119,7 @@ if  pt --version >/dev/null 2>&1; then
   say "Setting Wine DLL override winhttp=native,builtin (via protontricks)..."
   say "Running protontricks with appid $APPID"
   if pt -c \
-    "wine reg add 'HKCU\Software\Wine\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" "$APPID" \
-    >/dev/null 2>&1; then
+    "wine reg add 'HKCU\Software\Wine\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" "$APPID" 2>&1; then
     say "DLL override set (or already was set)."
   else
     warn "protontricks is installed but the registry command failed."
