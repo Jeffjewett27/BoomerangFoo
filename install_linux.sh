@@ -26,7 +26,7 @@ get_game_dir() {
 
       # grab library paths from libraryfolders.vdf (good enough for Deck layouts)
       while IFS= read -r lib; do
-        manifest="$lib/steamapps/appmanifest_${appid}.acf"
+        manifest="$lib/steamapps/appmanifest_${APPID}.acf"
         if [[ -f "$manifest" ]]; then
           installdir=$(awk -F'"' '/"installdir"/ {print $4; exit}' "$manifest")
           echo "$lib/steamapps/common/$installdir"
@@ -36,7 +36,7 @@ get_game_dir() {
     done
 
     # fallback: default library under that root
-    manifest="$root/steamapps/appmanifest_${appid}.acf"
+    manifest="$root/steamapps/appmanifest_${APPID}.acf"
     if [[ -f "$manifest" ]]; then
       installdir=$(awk -F'"' '/"installdir"/ {print $4; exit}' "$manifest")
       echo "$root/steamapps/common/$installdir"
