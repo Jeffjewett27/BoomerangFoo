@@ -9,9 +9,23 @@ Boomerang Foo: Chaos Mod (BFoo for short) is a mod for the 2020 couch PvP party 
 
 1. Download `BoomerangFoo-<version>.zip` in the releases.
 2. Unzip the files into `C:\Program Files (x86)\Steam\steamapps\common\Boomerang Fu`. The BepInEx folder should be in the same folder as `Boomerang Fu.exe`.
-3. Open the game to initialize the files and configs.
+3. Open the game to initialize the files and configs. If everything has gone right, you should see 'Mod' in the version number on the main menu.
 
 *Note: to update, you only need to replace the `BoomerangFoo.dll` file in `Bepinex/plugins/BoomerangFoo` with the `BoomerangFoo.dll` in the releases.*
+
+### Steam Deck / Linux
+
+For convenience, I have provided an installation script `bfoo-linux-install-latest.tar.gz` to install the latest release. 
+
+1. (Steam Deck) Open up desktop mode and navigate to the BoomerangFoo releases page.
+2. Download `bfoo-linux-install-latest.tar.gz`.
+3. Extract the zip to get `bfoo-linux-install-latest.sh`.
+4. **Important**: you need to install `protontricks` from the Discover store: Click shopping bag icon on taskbar, then search 'protontricks', and install from Flathub.
+5. Now run `bfoo-linux-install-latest.sh`, either by double-clicking and pressing execute, or by right-clicking and pressing 'Run in Konsole'.
+6. If it says installation complete, now you should be able to go back to Gaming mode and open Boomerang Fu.
+
+*Details:* The installation script finds your Boomerang Fu installation, then downloads and extracts the mod. Then it configures Proton according to https://docs.bepinex.dev/articles/advanced/proton_wine.html.
+
 
 ## Disabling Mod
 
