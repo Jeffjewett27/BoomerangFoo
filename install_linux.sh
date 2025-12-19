@@ -118,13 +118,14 @@ unzip -o -q "$zipfile" -d "$GAME_DIR" || die "Unzip failed"
 if  pt --version >/dev/null 2>&1; then
   say "Setting Wine DLL override winhttp=native,builtin (via protontricks)..."
   say "Running protontricks with appid $APPID"
-  if pt -c \
-    "wine reg add 'HKCU\Software\Wine\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" "$APPID" 2>&1; then
-    say "DLL override set (or already was set)."
-  else
-    warn "protontricks is installed but the registry command failed."
-    warn "You can do it manually in Proton/Wine: winecfg -> Libraries -> add override for winhttp (native,builtin)."
-  fi
+#   if pt -c \
+#     "wine reg add 'HKCU\Software\Wine\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" "$APPID" 2>&1; then
+#     say "DLL override set (or already was set)."
+#   else
+#     warn "protontricks is installed but the registry command failed."
+#     warn "You can do it manually in Proton/Wine: winecfg -> Libraries -> add override for winhttp (native,builtin)."
+#   fi
+  flatpak run com.github.Matoking.protontricks -c "wine reg add 'HKCU\Software\Wine\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" "$APPID"
 else
   warn "protontricks not installed; skipping Wine DLL override."
   warn "If the mod doesn't load under Proton, install protontricks and add winhttp override (native,builtin)."
