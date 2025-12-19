@@ -8,6 +8,16 @@ say() { printf '%s\n' "$*"; }
 warn() { printf 'WARN: %s\n' "$*" >&2; }
 die() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
 
+pt() {
+  if command -v protontricks >/dev/null 2>&1; then
+    protontricks "$@"
+  elif command -v flatpak >/dev/null 2>&1 && flatpak info com.github.Matoking.protontricks >/dev/null 2>&1; then
+    flatpak run com.github.Matoking.protontricks "$@"
+  else
+    return 127
+  fi
+}
+
 need_cmd() { command -v "$1" >/dev/null 2>&1 || die "Missing dependency: $1"; }
 
 # likely Steam roots on Steam Deck (native + Flatpak)
@@ -104,9 +114,9 @@ say "Installing (overwrite matching files; do not delete anything)..."
 unzip -o -q "$zipfile" -d "$GAME_DIR" || die "Unzip failed"
 
 # Proton/Wine DLL override (optional)
-if command -v protontricks >/dev/null 2>&1; then
+if  pt --version >/dev/null 2>&1; then
   say "Setting Wine DLL override winhttp=native,builtin (via protontricks)..."
-  if protontricks "$APPID" -c \
+  if pt "$APPID" -c \
     "wine reg add 'HKCU\\Software\\Wine\\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" \
     >/dev/null 2>&1; then
     say "DLL override set (or already was set)."

@@ -108,7 +108,7 @@
 		<Copy SourceFiles="$(OutputPath)Newtonsoft.Json.dll" DestinationFolder="$(PluginsDir)" />
 		<!--<Exec Command="powershell -Command &quot;if (Test-Path '$(ReleaseZip)') { Remove-Item '$(ReleaseZip)' } ; Compress-Archive -Path $(ExportDir)\BoomerangFu\* -DestinationPath $(ReleaseZip)&quot;" Condition=" '$(OS)' == 'Windows_NT' " />-->
 		<Exec Condition=" '$(OS)' == 'Windows_NT' "
-			Command='tar -a -c -f "$(ReleaseZip)" -C "$(ExportDir)." "BoomerangFu"' />
+			Command='tar -a -c -f "$(ReleaseZip)" -C "$(ExportDir)BoomerangFu" "*"' />
 
 		<Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(ExportDir)" SkipUnchangedFiles="true" />
 	</Target>
