@@ -9,7 +9,7 @@ warn() { printf 'WARN: %s\n' "$*" >&2; }
 die() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
 
 pt() {
-  printf "Running protontricks with args: %s\n" "$@";
+  say "Running protontricks with args: $@"
   if command -v protontricks >/dev/null 2>&1; then
     protontricks "$@"
   elif command -v flatpak >/dev/null 2>&1 && flatpak info com.github.Matoking.protontricks >/dev/null 2>&1; then
@@ -117,6 +117,7 @@ unzip -o -q "$zipfile" -d "$GAME_DIR" || die "Unzip failed"
 # Proton/Wine DLL override (optional)
 if  pt --version >/dev/null 2>&1; then
   say "Setting Wine DLL override winhttp=native,builtin (via protontricks)..."
+  say "Running protontricks with appid $APPID"
   if pt -c \
     "wine reg add 'HKCU\Software\Wine\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" "$APPID" \
     >/dev/null 2>&1; then
