@@ -29,6 +29,7 @@ get_game_dir() {
         manifest="$lib/steamapps/appmanifest_${APPID}.acf"
         if [[ -f "$manifest" ]]; then
           installdir=$(awk -F'"' '/"installdir"/ {print $4; exit}' "$manifest")
+          [[ -n "${installdir:-}" ]] || continue
           echo "$lib/steamapps/common/$installdir"
           return 0
         fi
@@ -120,3 +121,8 @@ fi
 
 say "Done."
 say "Tip: launch the game once, then check: $GAME_DIR/BepInEx/LogOutput.log"
+
+if [[ -t 0 ]]; then
+  echo
+  read -r -p "Press Enter to close..." _
+fi
