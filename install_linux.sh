@@ -116,8 +116,8 @@ unzip -o -q "$zipfile" -d "$GAME_DIR" || die "Unzip failed"
 # Proton/Wine DLL override (optional)
 if  pt --version >/dev/null 2>&1; then
   say "Setting Wine DLL override winhttp=native,builtin (via protontricks)..."
-  if pt "$APPID" -c \
-    "wine reg add 'HKCU\\Software\\Wine\\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" \
+  if pt -c \
+    "wine reg add 'HKCU\Software\Wine\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" "$APPID" \
     >/dev/null 2>&1; then
     say "DLL override set (or already was set)."
   else
