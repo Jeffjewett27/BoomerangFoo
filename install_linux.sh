@@ -9,7 +9,7 @@ warn() { printf 'WARN: %s\n' "$*" >&2; }
 die() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
 
 pt() {
-  echo "Running protontricks with args: $@"
+  printf "Running protontricks with args: %s\n" "$@";
   if command -v protontricks >/dev/null 2>&1; then
     protontricks "$@"
   elif command -v flatpak >/dev/null 2>&1 && flatpak info com.github.Matoking.protontricks >/dev/null 2>&1; then
