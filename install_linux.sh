@@ -8,17 +8,6 @@ say() { printf '%s\n' "$*"; }
 warn() { printf 'WARN: %s\n' "$*" >&2; }
 die() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
 
-pt() {
-  say "Running protontricks with args: $@"
-  if command -v protontricks >/dev/null 2>&1; then
-    protontricks "$@"
-  elif command -v flatpak >/dev/null 2>&1 && flatpak info com.github.Matoking.protontricks >/dev/null 2>&1; then
-    flatpak run com.github.Matoking.protontricks "$@"
-  else
-    return 127
-  fi
-}
-
 need_cmd() { command -v "$1" >/dev/null 2>&1 || die "Missing dependency: $1"; }
 
 # likely Steam roots on Steam Deck (native + Flatpak)
@@ -115,26 +104,14 @@ say "Installing (overwrite matching files; do not delete anything)..."
 unzip -o -q "$zipfile" -d "$GAME_DIR" || die "Unzip failed"
 
 # Proton/Wine DLL override (optional)
-if  pt --version >/dev/null 2>&1; then
-  say "Setting Wine DLL override winhttp=native,builtin (via protontricks)..."
-  say "Running protontricks with appid $APPID"
-#   if pt -c \
-#     "wine reg add 'HKCU\Software\Wine\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" "$APPID" 2>&1; then
-#     say "DLL override set (or already was set)."
-#   else
-#     warn "protontricks is installed but the registry command failed."
-#     warn "You can do it manually in Proton/Wine: winecfg -> Libraries -> add override for winhttp (native,builtin)."
-#   fi
+if command -v protontricks >/dev/null 2>&1; then
+  protontricks -c "wine reg add 'HKCU\Software\Wine\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" "$APPID"
+elif command -v flatpak >/dev/null 2>&1 && flatpak info com.github.Matoking.protontricks >/dev/null 2>&1; then
   flatpak run com.github.Matoking.protontricks -c "wine reg add 'HKCU\Software\Wine\DllOverrides' /v winhttp /t REG_SZ /d native,builtin /f" "$APPID"
 else
   warn "protontricks not installed; skipping Wine DLL override."
   warn "If the mod doesn't load under Proton, install protontricks and add winhttp override (native,builtin)."
+  warn "Follow this guide: https://docs.bepinex.dev/articles/advanced/proton_wine.html"
 fi
 
 say "Done."
-say "Tip: launch the game once, then check: $GAME_DIR/BepInEx/LogOutput.log"
-
-if [[ -t 0 ]]; then
-  echo
-  read -r -p "Press Enter to close..." _
-fi
